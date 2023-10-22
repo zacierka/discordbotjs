@@ -1,2 +1,9 @@
+### node files ###
 node_modules/
+
+### env files ###
 .env
+config.json
+
+### logging files ###
+*.log

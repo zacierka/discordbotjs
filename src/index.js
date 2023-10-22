@@ -1,5 +1,7 @@
+require('dotenv').config()
 const { Client, IntentsBitField } = require('discord.js');
-require('dotenv').config();
+const eventHandler = require('./handlers/eventHandler');
+
 const client = new Client({
     intents: [
         IntentsBitField.Flags.Guilds,
@@ -9,17 +11,6 @@ const client = new Client({
     ],
 });
 
-client.on('ready', () => console.log('Ready!'));
-
-client.on('message', (msg) => {
-    console.log(msg.content);
-    if (msg.author.bot) return;
-    
-    if (msg.content.startsWith('!ping')) {
-        msg.channel.send('!gnip');
-    }
-});
+eventHandler(client);
 
 client.login(process.env.TOKEN);
-
-console.log(process.env);
